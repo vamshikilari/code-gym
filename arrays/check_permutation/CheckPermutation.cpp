@@ -8,10 +8,13 @@ bool check_if_permutations(string &one, string &two);
 
 int main()
 {
-    string one = "vamshi";
-    string two = "shivam";
+    string one, two;
+    cout << "Enter input 1 \n";
+    getline(cin, one);
+    cout << "Enter input 2 \n";
+    getline(cin, two);
     bool is_a_permutation = check_if_permutations(one, two);
-    cout << is_a_permutation;
+    cout << (is_a_permutation ? "Given strings are permutations" : "Given strings are not permutations");
     return 0;
 }
 
