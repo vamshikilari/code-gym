@@ -14,7 +14,7 @@ int main()
     cout << "Enter input 2 \n";
     getline(cin, two);
     bool is_a_permutation = check_if_permutations(one, two);
-    cout << (is_a_permutation ? "Given strings are permutations" : "Given strings are not permutations");
+    cout << (is_a_permutation ? "Given strings are permutations" : "Given strings are not permutations") << endl;
     return 0;
 }
 
