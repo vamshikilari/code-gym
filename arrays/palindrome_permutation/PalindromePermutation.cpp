@@ -44,7 +44,7 @@ bool check_if_palindrome_permutation(string &a){
             is_true = true;
         }else if(!is_even && it->second % 2 == 0){
             is_true = true;
-        }else if(!is_even && oddCounter == 0 && it->second == 1){
+        }else if(!is_even && oddCounter == 0 && it->second % 2 == 1){
             oddCounter++;
             is_true = true;
         }else{
