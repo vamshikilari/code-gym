@@ -5,7 +5,8 @@ using namespace std;
 
 void urlify(string &a);
 
-int main(){
+int main()
+{
     cout << "Enter string to urlify: \n";
     string a;
     getline(cin, a);
@@ -14,14 +15,17 @@ int main(){
     return 0;
 }
 
-void urlify(string &a){
+void urlify(string &a)
+{
 
     int str_length = a.length();
     int numOfSpaces = 0;
     int i = 0, j = 0;
-    
-    for(i=0; i<str_length; ++i){
-        if(isspace(a[i])){
+
+    for (i = 0; i < str_length; ++i)
+    {
+        if (isspace(a[i]))
+        {
             numOfSpaces++;
         }
     }
@@ -32,12 +36,16 @@ void urlify(string &a){
 
     i = extendedLength - 1;
 
-    for(j=str_length-1; j >= 0; --j){      
-        if(isspace(a[j])){
+    for (j = str_length - 1; j >= 0; --j)
+    {
+        if (isspace(a[j]))
+        {
             a[i--] = '0';
             a[i--] = '2';
             a[i--] = '%';
-        }else{
+        }
+        else
+        {
             a[i--] = a[j];
         }
     }
