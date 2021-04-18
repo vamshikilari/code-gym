@@ -1,6 +1,7 @@
 /**
  *
- * @param {Array} matrix
+ * @param {Array<number>} matrix
+ * @returns {Boolean}
  * validates input to be square matrix
  */
 function validateInput(matrix) {
@@ -11,8 +12,9 @@ function validateInput(matrix) {
 }
 
 /**
- * @param {Array} matrix
- * rotates a square matrix by a factor of 90°
+ * @param {Array<number>} matrix
+ * @returns {Array<number>}
+ * rotates a square matrix by 90°
  * @example: [[1,2], [3,4]] ==> [[1,3], [2, 4]]
  * */
 function rotateSquareMatrix(matrix) {
@@ -35,9 +37,11 @@ function rotateSquareMatrix(matrix) {
 }
 
 /**
- *
- * @param {Object}
- * @returns {Array}
+ * @param {Object} args
+ * @param {number} args.size
+ * @param {number} args.lowBound
+ * @param {number} args.upperBound
+ * @returns {Array<number>}
  */
 function generateRandomSquareMatrix({
   size = 4,
