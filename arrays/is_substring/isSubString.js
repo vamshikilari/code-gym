@@ -30,6 +30,7 @@ function isSubString(string, testString) {
     tokenizedString.length !== tokenizedTestString.length ||
     !haveEqualCharInstances
   ) {
+    console.info("strings are not equal");
     return false;
   }
 
@@ -110,8 +111,13 @@ function isSubString(string, testString) {
       backIt--;
     }
   }
-  console.log("is a substring, rotated partially");
-  return partiallyRotatedFlag;
+  if (partiallyRotatedFlag) {
+    console.log("is a substring, rotated partially");
+    return true;
+  } else {
+    console.log("is not a substring, nor rotated partially");
+    return false;
+  }
 }
 
-isSubString("waterbottle", "elttobretaw");
+isSubString("waterbottle", "ttlewaterbo");
