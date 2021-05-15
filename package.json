@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "name": "ds-algos-gym",
+  "version": "1.0.0",
+  "description": "code examples for basic algorithm problems",
+  "main": "index.js",
+  "repository": "git@github.com:vamshikilari/code-gym.git",
+  "author": "vamshikilari <vamshi9621@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
