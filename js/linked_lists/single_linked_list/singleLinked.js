@@ -157,7 +157,7 @@ export class LinkedList {
       return length;
     }
 
-    const currentNode = this.head;
+    let currentNode = this.head;
     while (currentNode != null) {
       length = length + 1;
       currentNode = currentNode.next;
@@ -213,10 +213,29 @@ export class LinkedList {
     }
     return this.toArray();
   }
+
+  kthFromLast(k) {
+    const currentLength = this.length();
+    const positionFromTail = k;
+    const positionFromHead = currentLength - k;
+
+    let iterator = 0;
+    let currentNode = this.head;
+    let nodeOfInterest = "null";
+    let foundFlag = false;
+
+    while (currentNode != null && !foundFlag) {
+      if (iterator === positionFromHead) {
+        nodeOfInterest = currentNode;
+        foundFlag = true;
+        return nodeOfInterest;
+      }
+      iterator++;
+      currentNode = currentNode.next;
+    }
+  }
 }
 
 export default LinkedList;
 
 const linkedListInstance = new LinkedList([1, 1, 1, 2, 3, 42, 1, 2, 2, 3]);
-
-console.log(linkedListInstance.removeDuplicatesInPlace());
