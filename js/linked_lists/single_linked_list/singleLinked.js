@@ -33,10 +33,10 @@ export class LinkedList {
 
   /**
    * Adds to last of list
-   * @param {*} data
+   * @param {*} node
    * @returns Linked list instance
    */
-  appendToList(data) {
+  appendToList(node) {
     const newNode = new Node(node);
 
     if (!this.head) {
@@ -124,14 +124,15 @@ export class LinkedList {
     let currentNode = this.head;
     let prevNode = this.head;
     let deletedFlag = false;
+    let currentPosition = 0;
 
-    if (currentNode.data === data) {
-      deleteHead();
+    if (currentNode.data === data && currentPosition === position) {
+      this.deleteHead();
       return this;
     }
 
     while (currentNode !== null && !deletedFlag) {
-      if (currentNode.data === data) {
+      if (currentNode.data === data && currentPosition === position) {
         prevNode.next = currentNode.next;
         deletedFlag = true;
       }
@@ -175,7 +176,7 @@ export class LinkedList {
       return array.length;
     }
 
-    const currentNode = this.head;
+    let currentNode = this.head;
     while (currentNode != null) {
       array.push(currentNode.data);
       currentNode = currentNode.next;
@@ -183,4 +184,39 @@ export class LinkedList {
 
     return array;
   }
+
+  /**
+   * @returns list of nodes in-order after removing duplicates
+   */
+  removeDuplicatesInPlace() {
+    let pivotIterator, pivotIteratorPosition, runnerIterator, runnerIterator2;
+    if (this.head === this.tail) {
+      return this;
+    }
+
+    pivotIterator = this.head;
+    runnerIterator2 = this.head;
+    while (pivotIterator.next != null) {
+      runnerIterator2 = pivotIterator;
+      runnerIterator = pivotIterator.next;
+
+      while (runnerIterator != null) {
+        if (pivotIterator.data === runnerIterator.data) {
+          runnerIterator2.next = runnerIterator.next;
+        } else {
+          runnerIterator2 = runnerIterator2.next;
+        }
+        runnerIterator = runnerIterator.next;
+      }
+
+      pivotIterator = pivotIterator.next;
+    }
+    return this.toArray();
+  }
 }
+
+export default LinkedList;
+
+const linkedListInstance = new LinkedList([1, 1, 1, 2, 3, 42, 1, 2, 2, 3]);
+
+console.log(linkedListInstance.removeDuplicatesInPlace());
