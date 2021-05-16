@@ -265,6 +265,52 @@ export class LinkedList {
 
     return this.toArray();
   }
+
+  /**
+   * partition the linked list around a particular given value such that all values less than given value, come
+   * before all node values greater than or equal to the given node value.
+   * conditions:
+   * => the value should be in the right partition.
+   * @param {*} value
+   * @returns {LinkedList} partitioned linked list around a given value
+   */
+  partionAroundNodeValue(value) {
+    // example: 1-> 5-> 2-> 3-> 7-> 8-> 3-> 9 [partition: 3]
+    // expected: 1-> 2-> 5-> 7-> 3-> 3-> 8-> 9
+    let currentNode = this.head;
+    let iterator = 0;
+    const refValue = value;
+    const currentLength = this.length();
+
+    let Nl = [],
+      Nr = [],
+      Ne = [];
+
+    console.log(this.toArray());
+
+    while (currentNode) {
+      if (currentNode.data < refValue) {
+        Nl.push(currentNode.data);
+      } else if (currentNode.data > refValue) {
+        Nr.push(currentNode.data);
+      } else if (currentNode.data === refValue) {
+        Ne.push(currentNode.data);
+      }
+      currentNode = currentNode.next;
+    }
+
+    this.head = null;
+    this.tail = null;
+
+    const partitionOrderArray =
+      Nl.length > currentLength / 2
+        ? Nl.concat(Ne).concat(Nr)
+        : Nl.concat(Nr).concat(Ne);
+
+    partitionOrderArray.forEach((node) => this.appendToList(node));
+
+    return this.toArray();
+  }
 }
 
 export default LinkedList;
