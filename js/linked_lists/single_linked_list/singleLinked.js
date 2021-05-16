@@ -286,8 +286,6 @@ export class LinkedList {
       Nr = [],
       Ne = [];
 
-    console.log(this.toArray());
-
     while (currentNode) {
       if (currentNode.data < refValue) {
         Nl.push(currentNode.data);
