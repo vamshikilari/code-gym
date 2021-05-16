@@ -17,7 +17,6 @@ export class LinkedList {
   constructor(listOfNodes) {
     this.head = null;
     this.tail = null;
-    this.listOfNodes = listOfNodes;
     this.fromArray(listOfNodes);
   }
 
@@ -214,6 +213,11 @@ export class LinkedList {
     return this.toArray();
   }
 
+  /**
+   *
+   * @param {number} k
+   * @returns {Node} kth element from last of linked list
+   */
   kthFromLast(k) {
     const currentLength = this.length();
     const positionFromTail = k;
@@ -234,8 +238,35 @@ export class LinkedList {
       currentNode = currentNode.next;
     }
   }
+
+  /**
+   * removes middle node if any from the linked list
+   * @returns {LinkedList} updated linked list
+   */
+  removeMiddleNode() {
+    const currentLength = this.length();
+    const middleNodePosition =
+      currentLength % 2 === 0 ? currentLength / 2 : (currentLength + 1) / 2;
+
+    let iteratorPosition = 0;
+    let deletedFlag = false;
+    let currentNode = this.head;
+
+    while (!deletedFlag) {
+      iteratorPosition++;
+
+      if (iteratorPosition === middleNodePosition - 1) {
+        currentNode.next = currentNode.next.next;
+        deletedFlag = true;
+      }
+
+      currentNode = currentNode.next;
+    }
+
+    return this.toArray();
+  }
 }
 
 export default LinkedList;
 
-const linkedListInstance = new LinkedList([1, 1, 1, 2, 3, 42, 1, 2, 2, 3]);
+const linkedListInstance = new LinkedList([1, 1, 1, 2, 3, 42, 1, 2, 2, 3, 1]);
