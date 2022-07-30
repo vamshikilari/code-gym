@@ -24,10 +24,12 @@
  * ]
  */
 
+let visitedMap = {};
+
 function bucket({ bitmap, x, y, color }) {
   const maxRows = bitmap.length;
   const maxCols = bitmap[0].length;
-  if (x > maxRows || x < 0 || y > maxCols || y < 0) {
+  if (visitedMap[`${x}${y}`] || x > maxRows || x < 0 || y > maxCols || y < 0) {
     return;
   }
   const pt = bitmap[x][y];
@@ -37,23 +39,23 @@ function bucket({ bitmap, x, y, color }) {
   }
 
   bitmap[x][y] = color;
+  const key = `${x}${y}`;
+  visitedMap[key] = true;
 
   let i1, i2, i3, i4;
-  i1 = { el: bitmap[x - 1][y], pt: { x: x - 1, y } };
-  i2 = { el: bitmap[x][y + 1], pt: { x: x, y: y + 1 } };
-  i3 = { el: bitmap[x + 1][y], pt: { x: x + 1, y } };
-  i4 = { el: bitmap[x][y - 1], pt: { x: x, y: y - 1 } };
+  i1 = { pt: { x: x - 1, y } };
+  i2 = { pt: { x: x, y: y + 1 } };
+  i3 = { pt: { x: x + 1, y } };
+  i4 = { pt: { x: x, y: y - 1 } };
 
   [i1, i2, i3, i4].forEach((it) => {
-    if (it.el === 0) {
-      bucket({ bitmap, x: it.pt.x, y: it.pt.y, color });
-    }
+    bucket({ bitmap, x: it.pt.x, y: it.pt.y, color });
   });
 }
 
 const bitmap = [
   [1, 0, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1, 1],
