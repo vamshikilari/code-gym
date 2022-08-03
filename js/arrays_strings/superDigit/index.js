@@ -9,7 +9,7 @@ function superDigit(num) {
     rem = sum;
     return superDigit(rem);
   } else {
-    return sum;
+    return Math.round(sum);
   }
 }
 
